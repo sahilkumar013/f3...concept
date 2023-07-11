@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Product List</title>
+
+    <!-- Send a GET Fetch Req -(https://dummyjson.com/products) and show the data
+you receive in a list view as shown in the gif.Handle using promise chaining or
+using async await.UI Reference:
+https://storage.googleapis.com/acciojob-open-file-collections/ezgif.com-video-t
+o-gif_(7).gifPlayground: -->
+
+</head>
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin: 20px 0;
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    span {
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <h1>Product List</h1>
+    <ul id="product-list"></ul>
+    <script>
+        fetch('https://dummyjson.com/products')
+            .then(response => response.json())
+            .then(data => {
+                const productList = document.getElementById('product-list');
+                data.products.forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.title} -${product.price}-${product.description}`;
+                    productList.appendChild(li);
+                });
+                console.log(data)
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+
+</html>
